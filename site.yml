@@ -3,5 +3,14 @@
   become: true
   tasks:
     - name: Print OS info
+      ansible.builtin.command: uname -a
+      register: os_info
+
+    - name: Display OS info
+      ansible.builtin.debug:
+        var: os_info.stdout
+
+    - name: Install Apache
       ansible.builtin.package:
         name: apache2
+        state: present
