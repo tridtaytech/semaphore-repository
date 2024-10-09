@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: my_servers
   become: true
   tasks:
     - name: Print OS info
