@@ -1,16 +1,12 @@
 ---
-- hosts: my_servers
+  
+- hosts: all
+  vars:
+    ansible_host_key_checking: false ##If you get an error about hosts not trusted
   become: true
+
   tasks:
-    - name: Print OS info
-      ansible.builtin.command: uname -a
-      register: os_info
-
-    - name: Display OS info
-      ansible.builtin.debug:
-        var: os_info.stdout
-
-    - name: Install Apache
-      ansible.builtin.package:
-        name: apache2
-        state: present
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: yes
